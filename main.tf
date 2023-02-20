@@ -19,3 +19,66 @@ resource "azurerm_eventhub" "hubs" {
   partition_count     = try(var.hubs[count.index].partition_count, 2)
   message_retention   = try(var.hubs[count.index].message_retention, 1)
 }
+
+
+resource "azurerm_monitor_aad_diagnostic_setting" "example" {
+  name                           = "eventhub"
+  eventhub_authorization_rule_id = azurerm_eventhub_namespace.evh.id
+  eventhub_name                  = "azuread"
+  log {
+    category = "SignInLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "AuditLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "NonInteractiveUserSignInLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "ServicePrincipalSignInLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "ManagedIdentitySignInLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "ProvisioningLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "ADFSSignInLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+}
