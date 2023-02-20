@@ -11,19 +11,25 @@ resource "azurerm_eventhub_namespace" "evh" {
   local_authentication_enabled = try(var.local_authentication_enabled, true)
 }
 
-resource "azurerm_eventhub" "hubs" {
-  count               = length(var.hubs)
-  name                = var.hubs[count.index].name
+resource "azurerm_eventhub" "defender" {
+  name                = "defender"
   namespace_name      = azurerm_eventhub_namespace.evh.name
   resource_group_name = var.resource_group
-  partition_count     = try(var.hubs[count.index].partition_count, 2)
-  message_retention   = try(var.hubs[count.index].message_retention, 1)
+  partition_count     = 2
+  message_retention   = 1
+}
+resource "azurerm_eventhub" "azuread" {
+  name                = "azuread"
+  namespace_name      = azurerm_eventhub_namespace.evh.name
+  resource_group_name = var.resource_group
+  partition_count     = 2
+  message_retention   = 1
 }
 
 
 resource "azurerm_monitor_aad_diagnostic_setting" "example" {
   name                           = "eventhub"
-  eventhub_authorization_rule_id = azurerm_eventhub_namespace.evh.id
+  eventhub_authorization_rule_id = azurerm_eventhub.azuread.id
   eventhub_name                  = "azuread"
   log {
     category = "SignInLogs"
