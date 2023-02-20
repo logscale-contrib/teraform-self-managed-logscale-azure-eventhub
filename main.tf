@@ -42,14 +42,6 @@ resource "azurerm_monitor_aad_diagnostic_setting" "example" {
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.azuread.id
   eventhub_name                  = "azuread"
   log {
-    category = "SignInLogs"
-    enabled  = true
-    retention_policy {
-      enabled = true
-      days    = 1
-    }
-  }
-  log {
     category = "AuditLogs"
     enabled  = true
     retention_policy {
@@ -57,6 +49,15 @@ resource "azurerm_monitor_aad_diagnostic_setting" "example" {
       days    = 1
     }
   }
+  log {
+    category = "SignInLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  
   log {
     category = "NonInteractiveUserSignInLogs"
     enabled  = true
@@ -91,6 +92,54 @@ resource "azurerm_monitor_aad_diagnostic_setting" "example" {
   }
   log {
     category = "ADFSSignInLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "RiskyUsers"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "UserRiskEvents"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "NetworkAccessTrafficLogs"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "RiskyServicePrincipals"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "ServicePrincipalRiskEvents"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 1
+    }
+  }
+  log {
+    category = "EnrichedOffice365AuditLogs"
     enabled  = true
     retention_policy {
       enabled = true
