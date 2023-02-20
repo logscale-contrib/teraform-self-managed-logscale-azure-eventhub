@@ -31,8 +31,8 @@ resource "azurerm_eventhub_namespace_authorization_rule" "azuread" {
   namespace_name      = azurerm_eventhub_namespace.evh.name
   resource_group_name = var.resource_group
 
-  listen = true
-  send   = false
+  listen = false
+  send   = true
   manage = false
 }
 
