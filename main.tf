@@ -57,7 +57,7 @@ resource "azurerm_monitor_aad_diagnostic_setting" "example" {
       days    = 1
     }
   }
-  
+
   log {
     category = "NonInteractiveUserSignInLogs"
     enabled  = true
@@ -145,5 +145,9 @@ resource "azurerm_monitor_aad_diagnostic_setting" "example" {
       enabled = true
       days    = 1
     }
+  }
+  log {
+    category = "B2CRequestLogs"
+    enabled  = false
   }
 }
