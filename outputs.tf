@@ -44,6 +44,12 @@ output "default_secondary_key" {
   sensitive   = true
 }
 
+output "application_tenant_id " {
+  value = azuread_service_principal.collector.application_tenant_id
+}
+output "client_id" {
+  value     = azuread_service_principal.collector.application_id
+}
 output "azuread_service_principal_password" {
   value     = azuread_service_principal_password.collector.value
   sensitive = true
