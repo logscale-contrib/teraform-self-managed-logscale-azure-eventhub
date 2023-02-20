@@ -50,3 +50,12 @@ variable "local_authentication_enabled" {
   type        = bool
   description = "(optional) describe your variable"
 }
+
+variable "hubs" {
+  description = "Hubs"
+  type        = list(any)
+  default = [
+    { name = "defender" },
+    { name = "azuread" }
+  ]
+}
