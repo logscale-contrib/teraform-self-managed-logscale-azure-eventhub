@@ -26,10 +26,20 @@ resource "azurerm_eventhub" "azuread" {
   message_retention   = 1
 }
 
+resource "azurerm_eventhub_namespace_authorization_rule" "azuread" {
+  name                = "azuread"
+  namespace_name      = azurerm_eventhub_namespace.evh.name
+  resource_group_name = var.resource_group
+
+  listen = true
+  send   = false
+  manage = false
+}
+
 
 resource "azurerm_monitor_aad_diagnostic_setting" "example" {
   name                           = "eventhub"
-  eventhub_authorization_rule_id = azurerm_eventhub.azuread.id
+  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.azuread.id
   eventhub_name                  = "azuread"
   log {
     category = "SignInLogs"
