@@ -152,3 +152,17 @@ resource "azurerm_monitor_aad_diagnostic_setting" "example" {
     retention_policy {}
   }
 }
+
+
+resource "azuread_application" "collector" {
+  display_name = var.application_name
+}
+
+resource "azuread_service_principal" "collector" {
+  application_id = azuread_application.collector.application_id
+}
+
+resource "azuread_service_principal_password" "collector" {
+  service_principal_id = azuread_service_principal.collector.object_id
+}
+

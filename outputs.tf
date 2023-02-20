@@ -43,3 +43,8 @@ output "default_secondary_key" {
   value       = azurerm_eventhub_namespace.evh.default_secondary_key
   sensitive   = true
 }
+
+output "azuread_service_principal_password" {
+  value     = azuread_service_principal_password.collector.value
+  sensitive = true
+}

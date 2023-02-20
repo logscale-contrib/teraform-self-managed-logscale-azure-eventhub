@@ -51,3 +51,8 @@ variable "local_authentication_enabled" {
   description = "(optional) describe your variable"
 }
 
+variable "application_name" {
+  type = string
+  default = "logscale-colector"
+  description = "(optional) describe your variable"
+}
