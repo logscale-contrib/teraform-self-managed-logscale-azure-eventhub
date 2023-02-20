@@ -169,5 +169,5 @@ resource "azuread_service_principal_password" "collector" {
 resource "azurerm_role_assignment" "event_hub_reader" {
   scope                = azurerm_eventhub_namespace.evh.id
   role_definition_name = "Reader"
-  principal_id         = azuread_application.collector.object_id
+  principal_id         = azuread_service_principal.collector.object_id
 }
