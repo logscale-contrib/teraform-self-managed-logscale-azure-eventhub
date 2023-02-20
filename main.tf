@@ -149,5 +149,6 @@ resource "azurerm_monitor_aad_diagnostic_setting" "example" {
   log {
     category = "B2CRequestLogs"
     enabled  = false
+    retention_policy {}
   }
 }
