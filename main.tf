@@ -17,5 +17,5 @@ resource "azurerm_eventhub" "hubs" {
   namespace_name      = azurerm_eventhub_namespace.evh.name
   resource_group_name = var.resource_group
   partition_count     = try(var.hubs[count.index].partition_count, 2)
-  message_retention   = try(var.hubs[count.index].message_retention, 24)
+  message_retention   = try(var.hubs[count.index].message_retention, 1)
 }
